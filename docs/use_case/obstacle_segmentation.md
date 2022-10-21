@@ -129,7 +129,7 @@ obstacle_segmentation では、検知(Detection)と非検知(NonDetection)の 2 
 Result は検知と非検知両方のパスしていれば true でそれ以外は false 失敗となる。
 
 以下に、フォーマットを示す。
-ただし、結果ファイルフォーマットで解説済みの共通部分については省略する。
+ただし、[結果ファイルフォーマット](https://github.com/tier4/driving_log_replayer/blob/develop/docs/result_format/index.md#%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%88)で解説済みの共通部分については省略する。
 
 ```json
 {
@@ -140,8 +140,15 @@ Result は検知と非検知両方のパスしていれば true でそれ以外�
       "Result": "Success or Warn or Fail",
       "Info": [
         {
-          "Annotation": "アノテーションされたバンディングボックスの情報、位置姿勢、ID",
-          "PointCloud": "評価した点群の情報、バウンディングボックス内の点の数と、base_linkからの最近傍の点の位置"
+          "Annotation": {  // アノテーションされたバウンディングボックスの情報
+            "Scale": "バウンディングボックスのサイズ",
+            "Position": "バウンディングボックスの位置姿勢",
+            "UUID": "バウンディングボックスのID",
+          },
+          "PointCloud": {  // 評価した点群の情報
+            "NumPoints": "バウンディングボックス内の点の数",
+            "Nearest": "base_linkからの最近傍の点の位置。[x, y, z]の順。",
+          },
         }
       ]
     },
@@ -149,7 +156,14 @@ Result は検知と非検知両方のパスしていれば true でそれ以外�
       "Result": "Success or Fail",
       "Info": [
         {
-          "PointCloud": "非検知エリアに出ている点の数と、base_linkからの距離毎の分布"
+          "PointCloud": {
+            "NumPoints": "非検知エリアに出ている点の数",
+            "Distance": {
+              "0-1": "base_linkからの距離毎の分布。0-1m区間。",
+              // 省略
+              "99-100": "base_linkからの距離毎の分布。99-100m区間。",
+            }
+          },
         }
       ]
     },

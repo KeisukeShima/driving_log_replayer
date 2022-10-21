@@ -21,7 +21,18 @@ driving_log_replayer で出力される結果ファイルのフォーマット�
     "ROS": "シミュレーションの時刻"
   },
   "Frame": {
-    "Ego": { "TransformStamped": "mapからbase_linkへのtransform_stamped" },
+    "Ego": {
+      "TransformStamped": { 
+        "header": "mapからbase_linkへのtransform_stampedのヘッダ",
+        "child_frame_id": "child_frameのid",
+        "transform": "mapからbase_linkへのtransform",
+        "rotation_euler": {
+          "roll": "オイラー角での自車の姿勢（x軸）",
+          "pitch": "オイラー角での自車の姿勢（y軸）",
+          "yaw": "オイラー角での自車の姿勢（z軸）",
+        },
+      },
+    },
     "評価毎に構成が異なる": "..."
   }
 }
@@ -30,8 +41,7 @@ driving_log_replayer で出力される結果ファイルのフォーマット�
 - Result: 実行したシナリオの評価結果
 - Stamp: 評価した時刻
 - Frame: 受け取った frame(topic)1 回分の評価結果と、判定に使用した値などの付属情報
-
-Frame の中身の詳細については、各ユースケースの評価結果ファイルフォーマットを参照。
+  - Ego: `TransoformStamped`のデータ形式は<https://docs.ros2.org/galactic/api/geometry_msgs/msg/TransformStamped.html>を参照。
 
 ## json ファイルの出力
 

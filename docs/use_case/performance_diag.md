@@ -166,7 +166,7 @@ performance_diag では、visibility と blockage の 2 つを評価している
 Result は visibility と blockage の両方をパスしていれば true でそれ以外は false 失敗となる。
 
 以下に、フォーマットを示す。
-ただし、結果ファイルフォーマットで解説済みの共通部分については省略する。
+ただし、[結果ファイルフォーマット](https://github.com/tier4/driving_log_replayer/blob/develop/docs/result_format/index.md#%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%88)で解説済みの共通部分については省略する。
 
 ```json
 {
